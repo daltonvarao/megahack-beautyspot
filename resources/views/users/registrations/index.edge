@@ -1,0 +1,42 @@
+@layout('layout.signup')
+
+@section('content')
+  <div class="main">
+    <section class="brand-container">
+      <div>
+        <p>Compartilhe um espaço não utilizado.</p>
+        <p>Encontre o melhor lugar para trabalhar </p>
+      </div>
+      <div>
+        <h1>Belezze</h1>
+      </div>
+    </section>
+
+    <section class="signup-container">
+      <form action="" method="post">
+        <h1>Signup</h1>
+        <div class="form-group">
+          <input type="text" placeholder="Nome">
+          <input type="text" placeholder="Sobrenome">
+        </div>
+        <input type="Email" placeholder="Email">
+        <input type="password" placeholder="Senha">
+        <input type="password" placeholder="Confirme a senha">
+        <label for="">
+          O que você procura?
+        </label>
+        <div class="form-group">
+          <div class="form-input">
+            <input id="owner" type="radio" name="user-type" placeholder="First Name">
+            <label for="owner">Alugar um espaço</label>
+          </div>
+          <div class="form-input">
+            <input id="professional" type="radio" name="user-type" placeholder="Last Name">
+            <label for="professional">Encontrar um espaço</label>
+          </div>
+        </div>
+        <button type="submit">Continue</button>
+      </form>
+    </section>
+  </div>
+@endsection
