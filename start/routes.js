@@ -27,6 +27,7 @@ Route.resource("sessions", "SessionController").only(["index", "store"]);
 Route.group("users", () => {
   Route.resource("dashboard", "DashboardController").only(["index"]);
   Route.resource("profile", "ProfileController");
+  Route.resource("saloes", "SpotController");
 })
   .namespace("users")
   .middleware(["auth"]);
