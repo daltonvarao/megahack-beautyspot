@@ -23,4 +23,5 @@ Route.resource("sessions", "SessionController");
 
 Route.group("users", () => {
   Route.resource("dashboard", "DashboardController");
+  Route.resource("profile", "ProfileController")
 }).namespace("users");
