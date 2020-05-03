@@ -1,19 +1,13 @@
 "use strict";
 
 const Factory = use("Factory");
-const { test, trait } = use("Test/Suite")("Teste");
+const { test, trait } = use("Test/Suite")("User registration");
 
 trait("Test/Browser");
+trait("DatabaseTransactions");
 
-test("Visit signup page", async ({ browser }) => {
-  const page = await browser.visit("/users/register", {
-    waitUntil: "load",
-  });
-  await page.assertHas("Signup");
-});
-
-test("Register a new user", async ({ browser, assert }) => {
-  const page = await browser.visit("/users/register");
+test("should be able to register a new user", async ({ browser, assert }) => {
+  const page = await browser.visit("/register");
 
   const role = await Factory.model("App/Models/Role").create({
     name: "owner",
@@ -30,8 +24,8 @@ test("Register a new user", async ({ browser, assert }) => {
     .submitForm("form")
     .waitForNavigation();
 
-  await page.assertPath("/users/register");
+  await page.assertPath("/dashboard");
   const user = await role.users().first();
 
   assert.equal(user.first_name, "Dalton Felipe");
-}).timeout(6000);
+}).timeout(0);

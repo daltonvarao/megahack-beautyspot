@@ -13,7 +13,7 @@
     </section>
 
     <section class="signup-container">
-      <form action="" method="post">
+      <form action="{{ route('register.store') }}" method="post">
         {{ csrfField() }}
         <h1>Signup</h1>
         <div class="form-group">
@@ -39,7 +39,8 @@
             <label for="professional">Encontrar um espaço</label>
           </div>
         </div>
-        <button type="submit">Continue</button>
+        <button>Continue</button>
+        <p>Já é membro? <a href="{{route('sessions.index')}}">Faça login</a></p>
       </form>
     </section>
   </div>

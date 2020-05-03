@@ -1,12 +1,11 @@
-'use strict'
+"use strict";
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-/**
- * Resourceful controller for interacting with sessions
- */
+const { validate } = use("Validator");
+
 class SessionController {
   /**
    * Show a list of all sessions.
@@ -17,20 +16,9 @@ class SessionController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-    return view.render("users/sessions/index")
+  async index({ view }) {
+    return view.render("users/sessions/index");
   }
-
-  /**
-   * Render a form to be used for creating a new session.
-   * GET sessions/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-
 
   /**
    * Create/save a new session.
@@ -39,40 +27,21 @@ class SessionController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
+   * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store({ request, response, auth, session }) {
+    const { email, password } = request.only(["email", "password"]);
+
+    try {
+      await auth.attempt(email, password);
+
+      return response.route("users.dashboard.index");
+    } catch (error) {
+      session.flash({ error: "Email ou senha incorretos" });
+
+      return response.redirect("back");
+    }
   }
-
-  /**
-   * Display a single session.
-   * GET sessions/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-
-
-  /**
-   * Render a form to update an existing session.
-   * GET sessions/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-
-
-  /**
-   * Update session details.
-   * PUT or PATCH sessions/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
 
   /**
    * Delete a session with id.
@@ -82,8 +51,15 @@ class SessionController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
+  async logout({ params, request, response, auth }) {
+    try {
+      await auth.logout();
+
+      return response.route("sessions.index");
+    } catch (error) {
+      console.warn(error);
+    }
   }
 }
 
-module.exports = SessionController
+module.exports = SessionController;
