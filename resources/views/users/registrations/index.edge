@@ -5,33 +5,37 @@
     <section class="brand-container">
       <div>
         <p>Compartilhe um espaço não utilizado.</p>
-        <p>Encontre o melhor lugar para trabalhar </p>
+        <p>Encontre o melhor lugar para trabalhar.</p>
       </div>
       <div>
-        <h1>Belezze</h1>
+        <h1>BeautySpot</h1>
       </div>
     </section>
 
     <section class="signup-container">
       <form action="" method="post">
+        {{ csrfField() }}
         <h1>Signup</h1>
         <div class="form-group">
-          <input type="text" placeholder="Nome">
-          <input type="text" placeholder="Sobrenome">
+          <input type="text" name="first_name" placeholder="Nome">
+          <input type="text" name="last_name" placeholder="Sobrenome">
         </div>
-        <input type="Email" placeholder="Email">
-        <input type="password" placeholder="Senha">
-        <input type="password" placeholder="Confirme a senha">
-        <label for="">
+        <input type="Email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Senha">
+        {{ elIf('<span class="error-input">$self</span>', getErrorFor('password'), hasErrorFor('password')) }}
+
+        <input type="password" name="password_confirmation" placeholder="Confirme a senha">
+        {{ elIf('<span class="error-input">$self</span>', getErrorFor('password_confirmation'), hasErrorFor('password_confirmation')) }}
+        <label>
           O que você procura?
         </label>
         <div class="form-group">
           <div class="form-input">
-            <input id="owner" type="radio" name="user-type" placeholder="First Name">
+            <input id="owner" type="radio" name="role" value="owner" required>
             <label for="owner">Alugar um espaço</label>
           </div>
           <div class="form-input">
-            <input id="professional" type="radio" name="user-type" placeholder="Last Name">
+            <input id="professional" type="radio" name="role" value="professional">
             <label for="professional">Encontrar um espaço</label>
           </div>
         </div>
@@ -39,4 +43,7 @@
       </form>
     </section>
   </div>
-@endsection
+  @endsection
+
+{{--  {{ getErrorFor('password') }}  --}}
+{{--  {{ getErrorFor('password_confirmation') }}  --}}
