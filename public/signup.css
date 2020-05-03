@@ -6,15 +6,16 @@
   --dark: #333;
 }
 
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+
 html,
 body {
   height: 100%;
   width: 100%;
-}
-
-body {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
+  background-color: #fafafd;
 }
 
 * {

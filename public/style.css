@@ -6,20 +6,22 @@
   --dark: #333;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
   width: 100%;
+  background-color: #fafafd;
 }
 
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
-}
-
-* {
-  margin: 0;
-  padding: 0;
 }
 
 .logo {

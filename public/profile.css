@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;900&display=swap");
+
+:root {
+  --primary: #e8315d;
+  --secondary: #979797;
+  --dark: #333;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem 0;
+  color: var(--dark);
+
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-header img {
+  width: 170px;
+  height: 170px;
+
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 0.75rem;
+}
+
+.profile-info {
+  padding: 10px;
+}
+
+.item {
+  border-bottom: 1px solid #eeeeee;
+  padding: 16px;
+}
+
+.item p {
+  color: var(--primary);
+  font-size: 12px;
+}
+
+.item .item-content {
+  font-weight: bold;
+  color: var(--dark);
+}
+
+.item-content span {
+  padding: 4px 10px;
+  background-color: #c4c4c4;
+  color: white;
+
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.buttons {
+  padding: 20px;
+  display: flex;
+}
+
+.buttons .delete-button {
+  background-color: #c4c4c4;
+}
+
+.buttons button {
+  width: 50%;
+  margin-bottom: 10px;
+}
+
+button + button {
+  margin-left: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .profile-container {
+    padding: 2.5rem 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card {
+    padding: 0 2rem;
+    background-color: #fff;
+    width: 100%;
+    max-width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.02);
+  }
+
+  .item p {
+    font-size: 16px;
+  }
+
+  .item .item-content {
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .profile-header img {
+    width: 250px;
+    height: 250px;
+  }
+}

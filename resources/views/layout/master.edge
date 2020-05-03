@@ -4,13 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BeautySpot</title>
-  {{ style('dashboard') }}
   {{ style('style') }}
+  {{ style('dashboard') }}
+  {{ style('profile') }}
 </head>
 <body>
   <header class="navigation">
     <div class="logo">
-      <h2>BeautySpot</h2>
+      <a href="{{ route('users.dashboard.index') }}">
+        <h2>BeautySpot</h2>
+      </a>
     </div>
     <form action="{{route('sessions.logout')}}" method="post" class="signout">
       {{ csrfField() }}
