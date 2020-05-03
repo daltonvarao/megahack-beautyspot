@@ -20,4 +20,6 @@ Route.on("/").render("welcome");
 
 Route.group("users", () => {
   Route.resource("register", "UserRegistrationController");
+  Route.resource("login", "SessionController");
+  Route.resource("dashboard", "DashboardController");
 }).prefix("users");

@@ -28,6 +28,7 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/vow": "^1.0.17",
     "@adonisjs/vow-browser": "^1.0.7",
+    "feather-icons": "^4.28.0",
     "pg": "^8.0.3"
   },
   "devDependencies": {},
