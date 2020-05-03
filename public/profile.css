@@ -44,6 +44,7 @@ body {
 
   border-radius: 50%;
   object-fit: cover;
+  padding: 10px;
 }
 
 .profile-info {
@@ -104,7 +105,21 @@ body {
 
     border: 1px solid #eeeeee;
     border-radius: 5px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  }
 
+  .item p {
+    font-size: 16px;
+  }
+
+  .item .item-content {
+    font-weight: bold;
+    font-size: 24px;
+  }
+
+  .profile-header img {
+    width: 200px;
+    height: 200px;
   }
 
 
