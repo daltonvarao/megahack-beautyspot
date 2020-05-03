@@ -2,10 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hello Adonis</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BeautySpot</title>
+  {{ style('dashboard') }}
   {{ style('style') }}
 </head>
 <body>
+  <header class="navigation">
+    <div class="logo">
+      <h2>BeautySpot</h2>
+    </div>
+    <form class="signout">
+      <button class="link" type="submit">
+        Signout
+        <i data-feather="log-out"></i>
+      </button>
+    </form>
+  </header>
   @!section('content')
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script>
+    feather.replace()
+  </script>
 </body>
 </html>

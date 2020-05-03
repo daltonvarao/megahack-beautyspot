@@ -1,28 +1,42 @@
-@layout('layout.dashboard')
+@layout('layout.master')
 
 @section('content')
-<header class="navigation">
-  <div class="logo">
-    <img src="/assets/BeautySpot.png" alt="">
-  </div>
-  <div class="signout">
-    <p>signout </p>
-    <i data-feather="log-out"></i>
-  </div>
-</header>
-<div class="content">
+
+<div class="container">
   <nav class="sidebar">
     <div class="links">
-      <a href="">Dashboard</a>
-      <a href="">Serviços</a>
-      <a href="">Perfil</a>
-      <a href="">Salões</a>
+      <a href="#">
+        <i data-feather="grid"></i>
+        <span class="label">
+          Dashboard
+        </span> 
+      </a>
+      <a href="#">
+        <i data-feather="scissors"></i>
+        <span class="label">
+          Serviços
+        </span> 
+      </a>
+      <a href="#">
+        <i data-feather="user"></i>
+        <span class="label">
+          Perfil
+        </span> 
+      </a>
+      <a href="#">
+        <i data-feather="map-pin"></i>
+        <span class="label">
+          Salões
+        </span> 
+      </a>
     </div>
   </nav>
-  
+</div>
+
+<div class="content">
   <div class="conteudo">
     <div class="weekplanner">
-  
+      <h3>Agenda da semana</h3>
     </div>
   </div>
 </div>
