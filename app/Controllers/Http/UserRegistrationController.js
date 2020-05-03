@@ -4,13 +4,18 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const User = use("App/Models/User");
+const Role = use("App/Models/Role");
+
+const { validate } = use("Validator");
+
 /**
- * Resourceful controller for interacting with userregistrations
+ * Resourceful controller for interacting with users/register
  */
-class UserRegistrationController {
+class userController {
   /**
-   * Show a list of all userregistrations.
-   * GET userregistrations
+   * Show a list of all users/register.
+   * GET users/register
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -18,65 +23,40 @@ class UserRegistrationController {
    * @param {View} ctx.view
    */
   async index({ request, response, view }) {
-    return view.render("users/registrations/index");
+    return view.render("users.registrations.index");
   }
 
   /**
-   * Render a form to be used for creating a new userregistration.
-   * GET userregistrations/create
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async create({ request, response, view }) {}
-
-  /**
-   * Create/save a new userregistration.
-   * POST userregistrations
+   * Create/save a new user.
+   * POST users/register
    *
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response }) {}
+  async store({ request, response, view, session }) {
+    const rules = { password: "required|confirmed" };
+    const validation = await validate(request.all(), rules);
+
+    if (validation.fails()) {
+      session.withErrors(validation.messages()).flashAll();
+      return response.redirect("back");
+    }
+
+    const data = request.only(["first_name", "last_name", "email", "password"]);
+    const name = request.input("role");
+
+    const user = await User.create(data);
+    const role = await Role.findBy({ name });
+
+    await role.users().attach([user.id]);
+
+    return response.route("users.register.index");
+  }
 
   /**
-   * Display a single userregistration.
-   * GET userregistrations/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async show({ params, request, response, view }) {}
-
-  /**
-   * Render a form to update an existing userregistration.
-   * GET userregistrations/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async edit({ params, request, response, view }) {}
-
-  /**
-   * Update userregistration details.
-   * PUT or PATCH userregistrations/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async update({ params, request, response }) {}
-
-  /**
-   * Delete a userregistration with id.
-   * DELETE userregistrations/:id
+   * Delete a user with id.
+   * DELETE users/register/:id
    *
    * @param {object} ctx
    * @param {Request} ctx.request
@@ -85,4 +65,4 @@ class UserRegistrationController {
   async destroy({ params, request, response }) {}
 }
 
-module.exports = UserRegistrationController;
+module.exports = userController;

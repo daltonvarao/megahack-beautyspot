@@ -7,6 +7,9 @@
   {{ style('signup') }}
 </head>
 <body>
+  @if(flashMessage('error'))
+    <span>{{ flashMessage('error') }}</span>
+  @endif
   @!section('content')
 </body>
 </html>
