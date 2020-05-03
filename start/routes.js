@@ -16,11 +16,16 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
-Route.on("/").render("welcome");
+Route.resource("register", "UserRegistrationController").only([
+  "index",
+  "store",
+]);
 
-Route.resource("register", "UserRegistrationController");
-Route.resource("sessions", "SessionController");
+Route.post("sessions/logout", "SessionController.logout").as("sessions.logout");
+Route.resource("sessions", "SessionController").only(["index", "store"]);
 
 Route.group("users", () => {
-  Route.resource("dashboard", "DashboardController");
-}).namespace("users");
+  Route.resource("dashboard", "DashboardController").only(["index"]);
+})
+  .namespace("users")
+  .middleware(["auth"]);

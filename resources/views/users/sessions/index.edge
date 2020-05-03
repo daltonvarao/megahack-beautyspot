@@ -3,12 +3,13 @@
 @section('content')
 <div class="main">
   <section class="signin-container">
-    <form action="" method="post">
+    <form action="{{route('sessions.store')}}" method="post">
+      {{ csrfField() }}
       <h1>Login</h1>
-      <input type="Email" placeholder="Email">
-      <input type="password" placeholder="Senha">
-      <button type="submit">Continue</button>
-      <p>Ainda não é membro? <a href="#">Cadastre-se</a></p>
+      <input type="Email" placeholder="Email" name="email">
+      <input type="password" placeholder="Senha" name="password">
+      <button>Continue</button>
+      <p>Ainda não é membro? <a href="{{route('register.index')}}">Cadastre-se</a></p>
     </form>
   </section>
 </div>

@@ -12,9 +12,10 @@
     <div class="logo">
       <h2>BeautySpot</h2>
     </div>
-    <form class="signout">
+    <form action="{{route('sessions.logout')}}" method="post" class="signout">
+      {{ csrfField() }}
       <button class="link" type="submit">
-        Signout
+        Sair
         <i data-feather="log-out"></i>
       </button>
     </form>

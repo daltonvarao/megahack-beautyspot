@@ -22,7 +22,7 @@ class userController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index({ request, response, view }) {
+  async index({ view }) {
     return view.render("users.registrations.index");
   }
 
@@ -34,7 +34,7 @@ class userController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store({ request, response, view, session }) {
+  async store({ request, response, session, auth }) {
     const rules = { password: "required|confirmed" };
     const validation = await validate(request.all(), rules);
 
@@ -51,7 +51,9 @@ class userController {
 
     await role.users().attach([user.id]);
 
-    return response.route("users.register.index");
+    await auth.login(user);
+
+    return response.route("users.dashboard.index");
   }
 
   /**
