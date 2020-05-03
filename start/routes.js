@@ -18,8 +18,9 @@ const Route = use("Route");
 
 Route.on("/").render("welcome");
 
+Route.resource("register", "UserRegistrationController");
+Route.resource("sessions", "SessionController");
+
 Route.group("users", () => {
-  Route.resource("register", "UserRegistrationController");
-  Route.resource("login", "SessionController");
   Route.resource("dashboard", "DashboardController");
-}).prefix("users");
+}).namespace("users");
