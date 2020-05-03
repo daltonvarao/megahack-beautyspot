@@ -1,12 +1,9 @@
-'use strict'
+"use strict";
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
-/**
- * Resourceful controller for interacting with profiles
- */
 class ProfileController {
   /**
    * Show a list of all profiles.
@@ -17,8 +14,8 @@ class ProfileController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
-    return view.render("users/profile/index")
+  async index({ view }) {
+    return view.render("users/profile/index");
   }
 
   /**
@@ -30,19 +27,7 @@ class ProfileController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
-  }
-
-  /**
-   * Create/save a new profile.
-   * POST profiles
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async store ({ request, response }) {
-  }
+  async create({ request, response, view }) {}
 
   /**
    * Display a single profile.
@@ -53,8 +38,7 @@ class ProfileController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
-  }
+  async show({ params, request, response, view }) {}
 
   /**
    * Render a form to update an existing profile.
@@ -65,8 +49,7 @@ class ProfileController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
-  }
+  async edit({ params, request, response, view }) {}
 
   /**
    * Update profile details.
@@ -76,19 +59,7 @@ class ProfileController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
-  }
-
-  /**
-   * Delete a profile with id.
-   * DELETE profiles/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
-  async destroy ({ params, request, response }) {
-  }
+  async update({ params, request, response }) {}
 }
 
-module.exports = ProfileController
+module.exports = ProfileController;
