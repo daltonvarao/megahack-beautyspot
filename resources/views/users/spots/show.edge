@@ -21,8 +21,8 @@
       </div>
       @if(roles.includes('professional') && !ids.includes(spot.id))
         <a class="button" href="{{ route('users.saloes.vincular', { id: spot.id }) }}">
-          Solicitar vínculo
-          <i data-feather="link-2"></i>
+          Reservar horário
+          <i data-feather="calendar"></i>
         </a>
       @endif
     </div>
