@@ -28,6 +28,9 @@ Route.group("users", () => {
   Route.resource("dashboard", "DashboardController").only(["index"]);
   Route.resource("profile", "ProfileController");
   Route.get("saloes/search", "SpotController.search").as("users.saloes.search");
+  Route.get("saloes/vincular/:id", "VinculoSpotController.store").as(
+    "users.saloes.vincular"
+  );
   Route.resource("saloes", "SpotController");
 })
   .namespace("users")

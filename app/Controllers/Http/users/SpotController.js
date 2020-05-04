@@ -89,10 +89,20 @@ class SpotController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show({ view, request }) {
+  async show({ view, request, auth }) {
     const { id } = request.params;
     const spot = await Spot.find(id);
-    return view.render("users.spots.show", { spot });
+    const user = await auth.getUser();
+
+    const ids = await user.spots().ids();
+
+    let roles = await user.roles().fetch();
+
+    return view.render("users.spots.show", {
+      spot,
+      roles: roles.toJSON().map((r) => r.name),
+      ids,
+    });
   }
 
   /**

@@ -6,7 +6,7 @@
     <div class="show-img">
       <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
     </div>
-    <div class="show-content">
+    <div class="show-content-container">
       <div class="show-item">
         <p>Nome do Salão</p>
         <div class="show-content">{{spot.name}}</div>
@@ -19,6 +19,12 @@
         <p>Preço</p>
         <div class="show-content">{{spot.price}}</div>
       </div>
+      @if(roles.includes('professional') && !ids.includes(spot.id))
+        <a class="button" href="{{ route('users.saloes.vincular', { id: spot.id }) }}">
+          Solicitar vínculo
+          <i data-feather="link-2"></i>
+        </a>
+      @endif
     </div>
   </div>
 </div>
