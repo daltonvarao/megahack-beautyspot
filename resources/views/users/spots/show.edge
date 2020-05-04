@@ -1,7 +1,25 @@
 @layout('layout.master')
 
 @section('content')
-  {{spot.name}}
-  {{spot.address}}
-  {{spot.price}}
+<div class="show-container">
+  <div class="show-card">
+    <div class="show-img">
+      <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="">
+    </div>
+    <div class="show-content">
+      <div class="show-item">
+        <p>Nome do Salão</p>
+        <div class="show-content">{{spot.name}}</div>
+      </div>
+      <div class="show-item">
+        <p>Endereço</p>
+        <div class="show-content">{{spot.address}}</div>
+      </div>
+      <div class="show-item">
+        <p>Preço</p>
+        <div class="show-content">{{spot.price}}</div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
