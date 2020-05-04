@@ -4,6 +4,7 @@
   --dark: #333;
 }
 
+.show-container,
 .spot-container {
   width: 100%;
   padding: 1rem;
@@ -87,4 +88,14 @@
   .spot-cards {
     grid-template-columns: 1fr 1fr 1fr;
   }
+}
+
+.show-card {
+  width: 100%;
+
+}
+
+.show-img {
+  width: auto;
+  height: auto;
 }
