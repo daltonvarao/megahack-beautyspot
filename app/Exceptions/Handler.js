@@ -1,6 +1,7 @@
 "use strict";
 
 const BaseExceptionHandler = use("BaseExceptionHandler");
+const Env = use("Env");
 
 /**
  * This class handles all exceptions thrown during
@@ -20,13 +21,31 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async handle(error, { request, response }) {
+  async handle(error, { response }) {
+    console.log(error);
+
     if (error.name === "InvalidSessionException") {
       response.redirect("/sessions");
       return;
     }
 
-    return response.status(error.status).send(error.message);
+    switch (error.status) {
+      case 500:
+        if (Env.get("NODE_ENV") !== "development") {
+          response.route("500");
+          return;
+        } else {
+          response.status(500).send(error);
+          return;
+        }
+      case 404:
+        if (Env.get("NODE_ENV") !== "development") {
+          response.route("404");
+          return;
+        } else {
+          response.status(404).send(error);
+        }
+    }
   }
 }
 

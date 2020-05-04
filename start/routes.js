@@ -31,3 +31,6 @@ Route.group("users", () => {
 })
   .namespace("users")
   .middleware(["auth"]);
+
+Route.on("500").render("errors.500");
+Route.on("404").render("errors.404");
