@@ -18,6 +18,7 @@ class SpotController {
    * @param {View} ctx.view
    */
   async index ({ request, response, view }) {
+    return view.render("users/spots/index")
   }
 
   /**
