@@ -4,6 +4,11 @@
   --dark: #333;
 }
 
+.show-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .show-container,
 .spot-container {
   width: 100%;
@@ -78,6 +83,14 @@
 }
 
 @media screen and (min-width: 768px) {
+  .show-container {
+    padding: 2.5rem 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .spot-container {
     padding: 1rem 1.5rem;
   }
@@ -87,8 +100,31 @@
   }
 
   .show-card {
+    padding: 2rem;
+    background-color: #fff;
+    width: 100%;
+    max-width: 800px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.02);
+  }
+
+  .show-item p {
+    font-size: 16px;
+  }
+
+  .show-item .show-content {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  .show-img {
+   max-width: 400px;
   }
 }
 
