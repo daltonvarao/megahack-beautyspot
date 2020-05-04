@@ -16,6 +16,10 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use("Route");
 
+Route.get("/", ({ response }) => {
+  return response.route("users.dashboard.index");
+});
+
 Route.resource("register", "UserRegistrationController").only([
   "index",
   "store",
