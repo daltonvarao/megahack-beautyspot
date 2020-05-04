@@ -3,7 +3,7 @@
 @section('content')
   <div class="spot-container">
     <div class="spot-intro">
-      <h2 class="title">Salões Associados</h2>
+      <h2 class="title">Salões {{ roles.includes('professional') ? 'Associados' : 'Cadastrados' }}</h2>
       <a class="button" href="{{ roles.includes('professional') ? route('users.saloes.search') : route('users.saloes.create') }}">
         @if(roles.includes('professional'))
           Buscar
