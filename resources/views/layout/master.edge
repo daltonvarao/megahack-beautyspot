@@ -19,8 +19,6 @@
     <form action="{{route('sessions.logout')}}" method="post" class="signout">
       {{ csrfField() }}
       <button class="link" type="submit">
-        {{ auth.user.first_name.split(' ')[0] }}
-        <i data-feather="chevron-right"></i>
         Sair
         <i data-feather="log-out"></i>
       </button>

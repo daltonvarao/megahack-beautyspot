@@ -4,33 +4,45 @@
   <div class="spot-container">
     <div class="spot-intro">
       <h2 class="title">Salões Associados</h2>
-      <button type="submit">
-        Buscar
-        <i data-feather="search"></i>
-      </button>
+      <a class="button" href="{{ roles.includes('professional') ? route('users.saloes.search') : route('users.saloes.create') }}">
+        @if(roles.includes('professional'))
+          Buscar
+          <i data-feather="search"></i>
+        @else
+          Cadastrar
+          <i data-feather="save"></i>
+        @endif
+      </a>
     </div>
-    <div class="spot-cards">
-      <div class="spot-card">
-        <div class="spot-card-title">
-          <h2>Salão Bela</h2>
-          <button type="submit">Abrir</button>
-        </div>
-        <p>Endereço</p>
-        <h3>Rua das Flores, 44, Bairro Flor</h3>        
-        <p>Preço</p>
-        <h3>R$30,00</h3>
-      </div>
 
-      <div class="spot-card">
-        <div class="spot-card-title">
-          <h2>Salão Bela</h2>
-          <button type="submit">Abrir</button>
-        </div>
-        <p>Endereço</p>
-        <h3>Rua das Flores, 44, Bairro Flor</h3>        
-        <p>Preço</p>
-        <h3>R$30,00</h3>
-      </div>
+    <div class="spot-cards">
+      @if(roles.includes('professional'))
+        @each(spot in spots)
+          <div class="spot-card">
+            <div class="spot-card-title">
+              <h2>{{ spot.name }}</h2>
+              <a class="button" href="{{ route('users.saloes.show', {id: spot.id}) }}">Abrir</a>
+            </div>
+            <p>Endereço</p>
+            <h3>{{spot.address}}</h3>        
+            <p>Preço</p>
+            <h3>R${{spot.price}}</h3>
+          </div>
+        @endeach
+      @else
+        @each(spot in createdSpots)
+          <div class="spot-card">
+            <div class="spot-card-title">
+              <h2>{{ spot.name }}</h2>
+              <a class="button" href="{{ route('users.saloes.show', {id: spot.id}) }}">Abrir</a>
+            </div>
+            <p>Endereço</p>
+            <h3>{{spot.address}}</h3>
+            <p>Preço</p>
+            <h3>R${{spot.price}}</h3>
+          </div>
+        @endeach
+      @endif
     </div>
   </div>
 @endsection

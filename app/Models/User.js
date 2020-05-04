@@ -21,8 +21,27 @@ class User extends Model {
     return this.hasMany("App/Models/Token");
   }
 
+  createdSpots() {
+    return this.hasMany("App/Models/Spot");
+  }
+
   roles() {
     return this.belongsToMany("App/Models/Role").pivotTable("user_roles");
+  }
+
+  spots() {
+    return this.belongsToMany("App/Models/Spot").pivotTable("user_spots");
+  }
+
+  async isAdmin() {
+    let admin = await this.roles().where("roles.name", "admin").ids();
+    if (admin.length > 0) return true;
+  }
+
+  async hasPermission(roleName) {
+    let role = await this.roles().where("roles.name", roleName).ids();
+    if (role.length > 0) return true;
+    return false;
   }
 }
 

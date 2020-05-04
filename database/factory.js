@@ -24,10 +24,15 @@ Factory.blueprint("App/Models/Role", async (faker, i, data) => {
 
 Factory.blueprint("App/Models/User", async (faker, i, data) => {
   return {
-    first_name: "Dalton Felipe",
-    last_name: "Silva Varão",
-    email: "daltonphellipe@gmail.com",
-    password: "123456",
+    first_name: faker.first(),
+    last_name: faker.last(),
+    address: faker.address(),
+    city: faker.city(),
+    uf: faker.state(),
+    address_number: faker.natural(),
+    phone: faker.phone(),
+    email: faker.email(),
+    password: faker.string(),
     ...data,
   };
 });

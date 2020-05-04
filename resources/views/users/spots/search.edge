@@ -1,0 +1,24 @@
+@layout('layout.master')
+
+@section('content')
+  <div class="spot-container">
+    <div class="spot-intro">
+      <h2 class="title">Buscar Salões</h2>
+    </div>
+
+    <div class="spot-cards">
+      @each(spot in spots)
+        <div class="spot-card">
+          <div class="spot-card-title">
+            <h2>{{ spot.name }}</h2>
+            <a class="button" href="{{ route('users.saloes.show', {id: spot.id}) }}">Abrir</a>
+          </div>
+          <p>Endereço</p>
+          <h3>{{spot.address}}</h3>        
+          <p>Preço</p>
+          <h3>R${{spot.price}}</h3>
+        </div>
+      @endeach
+    </div>
+  </div>
+@endsection
