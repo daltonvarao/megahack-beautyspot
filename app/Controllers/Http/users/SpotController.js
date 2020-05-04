@@ -35,7 +35,6 @@ class SpotController {
   }
 
   async search({ view, auth }) {
-    console.log("hello");
     const spots = await Spot.all();
 
     return view.render("users.spots.search", {
@@ -60,6 +59,7 @@ class SpotController {
    * Create/save a new spot.
    * POST spots
    *
+
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
@@ -70,7 +70,7 @@ class SpotController {
     const spot = request.only(["name", "price", "address"]);
 
     if (hasPermission) {
-      await user.spots().create(spot);
+      await user.createdSpots().create(spot);
       session.flash({ notification: "Salão cadastrado com sucesso!" });
     } else {
       session.flash({ error: "Usuário não tem permissão para este recurso!" });
