@@ -1,0 +1,17 @@
+@layout('layout.master')
+
+@section('content')
+  <div class="new-spot-container">
+    <div class="new-spot-card">
+      <form action="{{ route('users.saloes.store') }}" method="post">
+        <h2>Novo Salão</h2>
+        {{ csrfField() }}
+        <input type="text" placeholder="Nome" name="name" required>
+        <input type="text" placeholder="Endereço" name="address" required>
+        <input type="text" placeholder="Preço" name="price" required>
+
+        <button class="w-100" type="submit">Salvar</button>
+      </form>
+    </div>
+  </div>
+@endsection

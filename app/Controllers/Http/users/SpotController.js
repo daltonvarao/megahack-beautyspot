@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -7,6 +7,9 @@
 /**
  * Resourceful controller for interacting with spots
  */
+
+const Spot = use("App/Models/Spot");
+
 class SpotController {
   /**
    * Show a list of all spots.
@@ -17,7 +20,27 @@ class SpotController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index({ view, auth }) {
+    const user = await auth.getUser();
+    let roles = await user.roles().fetch();
+
+    const createdSpots = await user.createdSpots().fetch();
+    const spots = await user.spots().fetch();
+
+    return view.render("users.spots.index", {
+      roles: roles.toJSON().map((r) => r.name),
+      spots: spots.toJSON(),
+      createdSpots: createdSpots.toJSON(),
+    });
+  }
+
+  async search({ view, auth }) {
+    console.log("hello");
+    const spots = await Spot.all();
+
+    return view.render("users.spots.search", {
+      spots: spots.toJSON(),
+    });
   }
 
   /**
@@ -29,7 +52,8 @@ class SpotController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
+  async create({ view }) {
+    return view.render("users.spots.create");
   }
 
   /**
@@ -40,7 +64,20 @@ class SpotController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async store ({ request, response }) {
+  async store({ request, response, auth, session }) {
+    const user = await auth.getUser();
+    const hasPermission = await user.hasPermission("owner");
+    const spot = request.only(["name", "price", "address"]);
+
+    if (hasPermission) {
+      await user.spots().create(spot);
+      session.flash({ notification: "Salão cadastrado com sucesso!" });
+    } else {
+      session.flash({ error: "Usuário não tem permissão para este recurso!" });
+    }
+
+    response.route("users.saloes.index");
+    return;
   }
 
   /**
@@ -52,7 +89,10 @@ class SpotController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show({ view, request }) {
+    const { id } = request.params;
+    const spot = await Spot.find(id);
+    return view.render("users.spots.show", { spot });
   }
 
   /**
@@ -64,8 +104,7 @@ class SpotController {
    * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
-  }
+  async edit({ params, request, response, view }) {}
 
   /**
    * Update spot details.
@@ -75,8 +114,7 @@ class SpotController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async update ({ params, request, response }) {
-  }
+  async update({ params, request, response }) {}
 
   /**
    * Delete a spot with id.
@@ -86,8 +124,7 @@ class SpotController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response }) {
-  }
+  async destroy({ params, request, response }) {}
 }
 
-module.exports = SpotController
+module.exports = SpotController;

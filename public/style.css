@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300");
 
 :root {
-  --primary: #e8315d;
+  --primary: rgb(232, 49, 93);
   --secondary: #979797;
   --dark: #333;
 }
@@ -22,6 +22,7 @@ body {
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
+  color: #333;
 }
 
 .logo {
@@ -48,6 +49,7 @@ p {
   margin: 0.83rem 0;
 }
 
+.button,
 button {
   cursor: pointer;
   background-color: var(--primary);
@@ -55,9 +57,52 @@ button {
   color: #fff;
   font-weight: 700;
   font-size: 16px;
-  border-radius: 5px;
-  padding: 0.75rem;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline-color: rgba(232, 49, 93, 05);
+}
+
+input {
+  background-color: #f0f0fd;
+  color: #333;
+  font-weight: 600;
+  border: 1px solid #bbb4;
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  width: 100%;
+}
+
+input + input {
+  margin-bottom: 0.75rem;
+}
+
+input::-webkit-input-placeholder {
+  font-weight: 600;
+}
+
+.button > svg,
+button > svg {
+  margin-left: 0.5rem;
+  width: 1.25rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.button:hover,
+button:hover,
+.link:hover {
+  opacity: 0.8;
+}
+
+form button {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
 }
 
 .link {
@@ -67,15 +112,16 @@ button {
   align-items: center;
   outline: none;
   padding: 0;
-}
-
-.link:hover {
-  opacity: 0.8;
+  margin: 0;
 }
 
 .link svg {
+  margin: 0 0rem;
+  width: 16px;
+}
+
+.link svg:last-child {
   margin-left: 0.5rem;
-  width: 18px;
 }
 
 header.navigation {
@@ -86,4 +132,16 @@ header.navigation {
   align-items: center;
   background-color: #fff;
   border-bottom: 1px solid #eeeeee;
+}
+
+.title {
+  color: var(--secondary);
+  font-weight: bold;
+  font-size: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  button {
+    padding: 0.5rem 1rem;
+  }
 }
